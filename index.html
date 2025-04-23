@@ -8,17 +8,15 @@
     * {
       box-sizing: border-box;
     }
-  
+
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: Arial, sans-serif;
-      background-color: #f5f5f5; /* Fundo clean e suave */
-      display: flex;
-      flex-direction: column;
+      background-color: #f5f5f5;
     }
-  
+
     header {
       background-color: #00796b;
       color: white;
@@ -27,31 +25,30 @@
       font-size: 20px;
       font-weight: bold;
     }
-  
-    .container {
-      flex: 1;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 120px); /* Altura sem header e footer */
     }
-  
+
+    .sidebar {
+      width: 250px;
+      background-color: #ffffff;
+      padding: 20px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    }
+
     .cards-container {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 30px;
+      flex-direction: column;
+      gap: 15px;
     }
-  
+
     .card {
       display: block;
-      width: 220px;
-      padding: 20px;
+      padding: 15px;
       border: 2px solid #009688;
-      border-radius: 10px;
+      border-radius: 8px;
       text-align: center;
       text-decoration: none;
       color: #004d40;
@@ -59,80 +56,94 @@
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       transition: transform 0.2s, box-shadow 0.2s;
     }
-  
+
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateX(5px);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       cursor: pointer;
     }
-  
+
     .card strong {
-      font-size: 18px;
+      font-size: 16px;
       color: #00796b;
     }
-  
+
+    main {
+      flex: 1;
+      padding: 40px;
+      background-color: white;
+      margin: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    }
+
     footer {
       text-align: center;
       background-color: #00796b;
-      color: rgb(255, 255, 255);
+      color: white;
       padding: 20px;
       font-size: 12px;
     }
-  
-    @media (max-width: 600px) {
-      .card {
-        width: 100%;
+
+    @media (max-width: 768px) {
+      .layout {
+        flex-direction: column;
       }
-  
-      .container {
-        padding: 20px 10px;
+
+      .sidebar {
+        width: 100%;
+        box-shadow: none;
+      }
+
+      main {
+        margin: 10px;
+        padding: 20px;
       }
     }
   </style>
-  
-  
 </head>
 <body>
   <header>
     Saúde e Tecnologia na Prevenção de ISTs
   </header>
 
-  <div class="container">
-    <h2 style="text-align: center; color: #00796b;">Infecções Sexualmente Transmissíveis (ISTs)</h2>
-    <p style="text-align: center;">Conheça as principais ISTs e saiba como preveni-las:</p>
-
-    <div class="container">
-        <h2 style="text-align: center; color: #00796b;">Infecções Sexualmente Transmissíveis (ISTs)</h2>
-        <p style="text-align: center;">Conheça as principais ISTs e saiba como preveni-las:</p>
-      
-        <div class="cards-container">
-          <a href="sifilis.html" class="card">
-            <strong>Sífilis</strong><br>Saiba mais sobre a Sífilis
-          </a>
-          <a href="gonorreia.html" class="card">
-            <strong>Gonorreia</strong><br>Clique para saber mais sobre essa IST.
-          </a>
-          <a href="clamidia.html" class="card">
-            <strong>Clamídia</strong><br>Clique para saber mais sobre essa IST.
-          </a>
-          <a href="herpes.html" class="card">
-            <strong>Herpes Genital</strong><br>Clique para saber mais sobre essa IST.
-          </a>
-          <a href="hpv.html" class="card">
-            <strong>HPV</strong><br>Clique para saber mais sobre essa IST.
-          </a>
-          <a href="hiv.html" class="card">
-            <strong>HIV/AIDS</strong><br>Clique para saber mais sobre essa IST.
-          </a>
-        </div>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="cards-container">
+        <a href="sifilis.html" class="card">
+          <strong>Sífilis</strong><br>Saiba mais
+        </a>
+        <a href="gonorreia.html" class="card">
+          <strong>Gonorreia</strong><br>Saiba mais
+        </a>
+        <a href="clamidia.html" class="card">
+          <strong>Clamídia</strong><br>Saiba mais
+        </a>
+        <a href="herpes.html" class="card">
+          <strong>Herpes Genital</strong><br>Saiba mais
+        </a>
+        <a href="hpv.html" class="card">
+          <strong>HPV</strong><br>Saiba mais
+        </a>
+        <a href="hiv.html" class="card">
+          <strong>HIV/AIDS</strong><br>Saiba mais
+        </a>
       </div>
-      
+    </aside>
+
+    <main>
+      <h2 style="color: #00796b;">O que são as ISTs?</h2>
+      <p>As Infecções Sexualmente Transmissíveis (ISTs) são causadas por vírus, bactérias ou outros microrganismos e transmitidas, principalmente, por meio do contato sexual sem o uso de preservativo.</p>
+
+      <p>Algumas ISTs podem não apresentar sintomas, o que aumenta o risco de complicações e de transmissão para outras pessoas. A prevenção é fundamental e pode ser feita com o uso correto da camisinha, a realização de exames periódicos e o tratamento adequado.</p>
+
+      <p>O uso da tecnologia tem sido cada vez mais importante para conscientizar, informar e facilitar o acesso à saúde, inclusive no diagnóstico e prevenção das ISTs.</p>
+    </main>
   </div>
 
   <footer>
     © 2025 - Projeto Saúde e Tecnologia na Prevenção de ISTs<br>
-    Esse Website possui valor apenas informativo. Todas as informações aqui contidas foram retiradas das seguintes referências:<br>
-    BRASIL. Ministério da Saúde | FEBRASGO | OMS
+    Esse Website possui valor apenas informativo. Referências: Ministério da Saúde | FEBRASGO | OMS
   </footer>
 </body>
 </html>
