@@ -2,47 +2,310 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Detalhes - HIV/AIDS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIV/AIDS - Informações Detalhadas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            padding: 20px;
-        }
-        .container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            max-width: 800px;
-            margin: auto;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #00796b;
-            text-align: center;
-        }
-        p {
-            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
             line-height: 1.6;
         }
-        a {
-            display: block;
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
             text-align: center;
-            margin-top: 30px;
-            color: #00796b;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.1;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card i {
+            font-size: 1.5rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .info-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info-card li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
             text-decoration: none;
+            margin-top: 2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--secondary-color);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--card-bg), #f1f5f9);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: var(--text-color);
+            font-size: 0.875rem;
+        }
+
+        .prevention-steps {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .prevention-steps h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+        }
+
+        .step-number {
+            background: var(--primary-color);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="header">
         <h1>HIV/AIDS</h1>
-        <p><strong>Forma de transmissão:</strong> relações sexuais desprotegidas, contato com sangue contaminado, seringas compartilhadas e transmissão vertical.</p>
-        <p><strong>Sintomas:</strong> febre, cansaço, infecções frequentes e queda da imunidade.</p>
-        <p><strong>Diagnóstico:</strong> testes rápidos, exames sorológicos e PCR.</p>
-        <p><strong>Tratamento:</strong> terapia antirretroviral (TARV) oferecida gratuitamente pelo SUS. Ainda sem cura definitiva.</p>
-        <a href="index.html">← Voltar para a página inicial</a>
+        <p>Informações detalhadas sobre prevenção, diagnóstico e tratamento</p>
+    </div>
+
+    <div class="container">
+        <div class="stat-grid">
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <h3>920 mil</h3>
+                <p>Pessoas vivendo com HIV no Brasil</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-shield-virus"></i>
+                <h3>95%</h3>
+                <p>Efetividade do tratamento</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-syringe"></i>
+                <h3>100%</h3>
+                <p>Cobertura pelo SUS</p>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="info-card">
+                <h2><i class="fas fa-virus"></i> O que é HIV/AIDS?</h2>
+                <p>O HIV (Vírus da Imunodeficiência Humana) é um vírus que ataca o sistema imunológico, responsável por defender o organismo de doenças. A AIDS (Síndrome da Imunodeficiência Adquirida) é a doença causada pela infecção do HIV.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-exchange-alt"></i> Transmissão</h2>
+                <ul>
+                    <li>Relações sexuais desprotegidas</li>
+                    <li>Compartilhamento de seringas</li>
+                    <li>Transmissão vertical (mãe para filho)</li>
+                    <li>Contato com sangue contaminado</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-thermometer-half"></i> Sintomas</h2>
+                <ul>
+                    <li>Febre persistente</li>
+                    <li>Fadiga e cansaço</li>
+                    <li>Perda de peso</li>
+                    <li>Infecções oportunistas</li>
+                    <li>Suor noturno</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-stethoscope"></i> Diagnóstico</h2>
+                <ul>
+                    <li>Teste rápido (resultado em 30 minutos)</li>
+                    <li>Exames sorológicos</li>
+                    <li>Teste PCR</li>
+                    <li>Disponível gratuitamente no SUS</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="prevention-steps">
+            <h2><i class="fas fa-shield-alt"></i> Prevenção</h2>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h3>Uso de Preservativo</h3>
+                    <p>Use camisinha em todas as relações sexuais, seja masculina ou feminina.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h3>PrEP</h3>
+                    <p>Profilaxia Pré-Exposição: medicamento que previne a infecção pelo HIV.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h3>PEP</h3>
+                    <p>Profilaxia Pós-Exposição: tratamento emergencial após possível exposição ao vírus.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <h3>Testagem Regular</h3>
+                    <p>Faça o teste regularmente, especialmente se tiver vida sexual ativa.</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Voltar para a página inicial
+        </a>
     </div>
 </body>
 </html>

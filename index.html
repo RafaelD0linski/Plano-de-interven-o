@@ -4,146 +4,477 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Saúde e Tecnologia na Prevenção de ISTs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --accent-color: #3b82f6;
+      --background-color: #f8fafc;
+      --text-color: #1e293b;
+      --card-bg: #ffffff;
+      --success-color: #10b981;
+      --warning-color: #f59e0b;
+      --danger-color: #ef4444;
+    }
+
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
     }
 
-    header {
-      background-color: #00796b;
+    .header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: white;
+      padding: 2rem;
       text-align: center;
-      padding: 20px;
-      font-size: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+      opacity: 0.1;
+      animation: float 20s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .info-card {
+      background: var(--card-bg);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .info-card h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-card i {
+      font-size: 1.5rem;
+    }
+
+    .info-card ul {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .info-card li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .info-card li::before {
+      content: '•';
+      color: var(--primary-color);
+      position: absolute;
+      left: 0;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, var(--card-bg), #f1f5f9);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      text-align: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-card h3 {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card p {
+      color: var(--text-color);
+      font-size: 0.875rem;
+    }
+
+    .prevention-steps {
+      background: var(--card-bg);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .prevention-steps h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 0.5rem;
+    }
+
+    .step-number {
+      background: var(--primary-color);
+      color: white;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-weight: bold;
     }
 
-    .layout {
+    .ist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .ist-card {
+      background: var(--card-bg);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--text-color);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
       display: flex;
-      min-height: calc(100vh - 120px); /* Altura sem header e footer */
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .ist-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .ist-card i {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .ist-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .ist-card p {
+      font-size: 0.875rem;
+      color: var(--text-color);
+    }
+
+    .footer {
+      background: var(--card-bg);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+      box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer p {
+      color: var(--text-color);
+      font-size: 0.875rem;
+    }
+
+    .footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ist-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .sidebar {
-      width: 250px;
-      background-color: #ffffff;
-      padding: 20px;
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+      background: var(--card-bg);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      height: fit-content;
     }
 
     .cards-container {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 1rem;
     }
 
     .card {
-      display: block;
-      padding: 15px;
-      border: 2px solid #009688;
-      border-radius: 8px;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      border-radius: 0.75rem;
       text-decoration: none;
-      color: #004d40;
-      background-color: white;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
+      color: var(--text-color);
+      background: var(--background-color);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
 
     .card:hover {
       transform: translateX(5px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      cursor: pointer;
-    }
-
-    .card strong {
-      font-size: 16px;
-      color: #00796b;
-    }
-
-    main {
-      flex: 1;
-      padding: 40px;
-      background-color: white;
-      margin: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-    }
-
-    footer {
-      text-align: center;
-      background-color: #00796b;
+      background: var(--primary-color);
       color: white;
-      padding: 20px;
-      font-size: 12px;
+      border-color: var(--secondary-color);
+    }
+
+    .card i {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      transition: color 0.3s ease;
+    }
+
+    .card:hover i {
+      color: white;
+    }
+
+    .card-content {
+      flex: 1;
+    }
+
+    .card-content strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-content span {
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
     }
 
     @media (max-width: 768px) {
       .layout {
-        flex-direction: column;
-      }
-
-      .sidebar {
-        width: 100%;
-        box-shadow: none;
-      }
-
-      main {
-        margin: 10px;
-        padding: 20px;
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    Saúde e Tecnologia na Prevenção de ISTs
-  </header>
-
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="cards-container">
-        <a href="sifilis.html" class="card">
-          <strong>Sífilis</strong><br>Saiba mais
-        </a>
-        <a href="gonorreia.html" class="card">
-          <strong>Gonorreia</strong><br>Saiba mais
-        </a>
-        <a href="clamidia.html" class="card">
-          <strong>Clamídia</strong><br>Saiba mais
-        </a>
-        <a href="herpes.html" class="card">
-          <strong>Herpes Genital</strong><br>Saiba mais
-        </a>
-        <a href="hpv.html" class="card">
-          <strong>HPV</strong><br>Saiba mais
-        </a>
-        <a href="hiv.html" class="card">
-          <strong>HIV/AIDS</strong><br>Saiba mais
-        </a>
-      </div>
-    </aside>
-
-    <main>
-      <h2 style="color: #00796b;">O que são as ISTs?</h2>
-      <p>As Infecções Sexualmente Transmissíveis (ISTs) são causadas por vírus, bactérias ou outros microrganismos e transmitidas, principalmente, por meio do contato sexual sem o uso de preservativo.</p>
-
-      <p>Algumas ISTs podem não apresentar sintomas, o que aumenta o risco de complicações e de transmissão para outras pessoas. A prevenção é fundamental e pode ser feita com o uso correto da camisinha, a realização de exames periódicos e o tratamento adequado.</p>
-
-      <p>O uso da tecnologia tem sido cada vez mais importante para conscientizar, informar e facilitar o acesso à saúde, inclusive no diagnóstico e prevenção das ISTs.</p>
-    </main>
+  <div class="header">
+    <h1>Saúde e Tecnologia na Prevenção de ISTs</h1>
+    <p>Informações confiáveis e atualizadas sobre Infecções Sexualmente Transmissíveis</p>
   </div>
 
-  <footer>
-    © 2025 - Projeto Saúde e Tecnologia na Prevenção de ISTs<br>
-    Esse Website possui valor apenas informativo. Referências: Ministério da Saúde | FEBRASGO | OMS
-  </footer>
+  <div class="container">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="cards-container">
+          <a href="sifilis.html" class="card">
+            <i class="fas fa-bacteria"></i>
+            <div class="card-content">
+              <strong>Sífilis</strong>
+              <span>Saiba mais sobre prevenção e tratamento</span>
+            </div>
+          </a>
+          <a href="gonorreia.html" class="card">
+            <i class="fas fa-bacteria"></i>
+            <div class="card-content">
+              <strong>Gonorreia</strong>
+              <span>Informações sobre sintomas e diagnóstico</span>
+            </div>
+          </a>
+          <a href="clamidia.html" class="card">
+            <i class="fas fa-bacteria"></i>
+            <div class="card-content">
+              <strong>Clamídia</strong>
+              <span>Conheça os riscos e prevenção</span>
+            </div>
+          </a>
+          <a href="herpes.html" class="card">
+            <i class="fas fa-virus"></i>
+            <div class="card-content">
+              <strong>Herpes</strong>
+              <span>Entenda os tipos e tratamento</span>
+            </div>
+          </a>
+          <a href="hpv.html" class="card">
+            <i class="fas fa-virus"></i>
+            <div class="card-content">
+              <strong>HPV</strong>
+              <span>Prevenção e vacinação</span>
+            </div>
+          </a>
+          <a href="hiv.html" class="card">
+            <i class="fas fa-virus"></i>
+            <div class="card-content">
+              <strong>HIV/AIDS</strong>
+              <span>Informações sobre prevenção e tratamento</span>
+            </div>
+          </a>
+        </div>
+      </aside>
+
+      <main>
+        <div class="info-section">
+          <h2><i class="fas fa-info-circle"></i> O que são as ISTs?</h2>
+          <p>As Infecções Sexualmente Transmissíveis (ISTs) são causadas por vírus, bactérias ou outros microrganismos e transmitidas, principalmente, por meio do contato sexual sem o uso de preservativo.</p>
+          <p>Algumas ISTs podem não apresentar sintomas, o que aumenta o risco de complicações e de transmissão para outras pessoas. A prevenção é fundamental e pode ser feita com o uso correto da camisinha, a realização de exames periódicos e o tratamento adequado.</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <i class="fas fa-users"></i>
+            <h3>1 milhão</h3>
+            <p>Novos casos de ISTs por dia no mundo</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-shield-virus"></i>
+            <h3>100%</h3>
+            <p>Prevenível com uso de preservativo</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-syringe"></i>
+            <h3>90%</h3>
+            <p>Tratamento disponível no SUS</p>
+          </div>
+        </div>
+
+        <div class="prevention-steps">
+          <h2><i class="fas fa-shield-alt"></i> Prevenção</h2>
+          <div class="step">
+            <div class="step-number">1</div>
+            <div>
+              <h3>Uso de Preservativo</h3>
+              <p>Use camisinha em todas as relações sexuais, incluindo sexo oral e anal.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div>
+              <h3>Testagem Regular</h3>
+              <p>Faça exames periódicos, especialmente se tiver vida sexual ativa.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div>
+              <h3>Vacinação</h3>
+              <p>Mantenha suas vacinas em dia, incluindo HPV e hepatite B.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ist-grid">
+          <div class="ist-card">
+            <i class="fas fa-bacteria"></i>
+            <h3>Sífilis</h3>
+            <p>Saiba mais sobre prevenção e tratamento</p>
+          </div>
+          <div class="ist-card">
+            <i class="fas fa-bacteria"></i>
+            <h3>Gonorreia</h3>
+            <p>Informações sobre sintomas e diagnóstico</p>
+          </div>
+          <div class="ist-card">
+            <i class="fas fa-bacteria"></i>
+            <h3>Clamídia</h3>
+            <p>Conheça os riscos e prevenção</p>
+          </div>
+          <div class="ist-card">
+            <i class="fas fa-virus"></i>
+            <h3>Herpes</h3>
+            <p>Entenda os tipos e tratamento</p>
+          </div>
+          <div class="ist-card">
+            <i class="fas fa-virus"></i>
+            <h3>HPV</h3>
+            <p>Prevenção e vacinação</p>
+          </div>
+          <div class="ist-card">
+            <i class="fas fa-virus"></i>
+            <h3>HIV/AIDS</h3>
+            <p>Informações sobre prevenção e tratamento</p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <p>© 2025 - Projeto Saúde e Tecnologia na Prevenção de ISTs</p>
+      <p>Esse Website possui valor apenas informativo. Referências: Ministério da Saúde | FEBRASGO | OMS</p>
+      <p><a href="https://www.gov.br/saude/pt-br" target="_blank">Ministério da Saúde</a> | <a href="https://www.febrasil.org.br/" target="_blank">FEBRASGO</a> | <a href="https://www.who.int/" target="_blank">OMS</a></p>
+    </footer>
+  </div>
 </body>
 </html>

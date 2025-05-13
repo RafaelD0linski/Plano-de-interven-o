@@ -2,47 +2,310 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Detalhes - HPV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HPV - Informações Detalhadas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            padding: 20px;
-        }
-        .container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            max-width: 800px;
-            margin: auto;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #00796b;
-            text-align: center;
-        }
-        p {
-            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
             line-height: 1.6;
         }
-        a {
-            display: block;
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
             text-align: center;
-            margin-top: 30px;
-            color: #00796b;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.1;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card i {
+            font-size: 1.5rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .info-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info-card li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
             text-decoration: none;
+            margin-top: 2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--secondary-color);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--card-bg), #f1f5f9);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: var(--text-color);
+            font-size: 0.875rem;
+        }
+
+        .prevention-steps {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .prevention-steps h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+        }
+
+        .step-number {
+            background: var(--primary-color);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="header">
         <h1>HPV - Papilomavírus Humano</h1>
-        <p><strong>Forma de transmissão:</strong> contato direto com pele ou mucosas infectadas.</p>
-        <p><strong>Sintomas:</strong> verrugas genitais e risco aumentado de câncer, especialmente do colo do útero.</p>
-        <p><strong>Diagnóstico:</strong> exames clínicos, colposcopia e Papanicolau.</p>
-        <p><strong>Tratamento:</strong> remoção das lesões com métodos físicos ou químicos. Não há cura definitiva.</p>
-        <a href="index.html">← Voltar para a página inicial</a>
+        <p>Informações detalhadas sobre prevenção, diagnóstico e tratamento</p>
+    </div>
+
+    <div class="container">
+        <div class="stat-grid">
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <h3>80%</h3>
+                <p>Das pessoas sexualmente ativas terão HPV em algum momento da vida</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-shield-virus"></i>
+                <h3>90%</h3>
+                <p>Efetividade da vacina contra os tipos mais comuns</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-syringe"></i>
+                <h3>100%</h3>
+                <p>Cobertura da vacina pelo SUS para meninas de 9-14 anos</p>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="info-card">
+                <h2><i class="fas fa-virus"></i> O que é HPV?</h2>
+                <p>O HPV (Papilomavírus Humano) é um vírus que infecta a pele e as mucosas, podendo causar verrugas genitais e câncer, especialmente do colo do útero. Existem mais de 200 tipos diferentes de HPV.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-exchange-alt"></i> Transmissão</h2>
+                <ul>
+                    <li>Contato sexual (oral, vaginal, anal)</li>
+                    <li>Contato direto com pele ou mucosas infectadas</li>
+                    <li>Compartilhamento de objetos contaminados</li>
+                    <li>Transmissão vertical (mãe para filho)</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-thermometer-half"></i> Sintomas</h2>
+                <ul>
+                    <li>Verrugas genitais</li>
+                    <li>Lesões no colo do útero</li>
+                    <li>Pode ser assintomático</li>
+                    <li>Coceira e desconforto</li>
+                    <li>Sangramento após relação sexual</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-stethoscope"></i> Diagnóstico</h2>
+                <ul>
+                    <li>Exame clínico</li>
+                    <li>Colposcopia</li>
+                    <li>Exame Papanicolau</li>
+                    <li>Biópsia (quando necessário)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="prevention-steps">
+            <h2><i class="fas fa-shield-alt"></i> Prevenção</h2>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h3>Vacinação</h3>
+                    <p>Vacina quadrivalente disponível gratuitamente no SUS para meninas de 9 a 14 anos e meninos de 11 a 14 anos.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h3>Uso de Preservativo</h3>
+                    <p>Use camisinha em todas as relações sexuais, incluindo sexo oral.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h3>Exames Regulares</h3>
+                    <p>Faça o exame Papanicolau regularmente, especialmente se for mulher sexualmente ativa.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <h3>Higiene</h3>
+                    <p>Mantenha uma boa higiene íntima e evite compartilhar objetos pessoais.</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Voltar para a página inicial
+        </a>
     </div>
 </body>
 </html>

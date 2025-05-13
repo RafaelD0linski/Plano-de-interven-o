@@ -2,47 +2,356 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Detalhes - Herpes Genital</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herpes - Informações Detalhadas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            padding: 20px;
-        }
-        .container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            max-width: 800px;
-            margin: auto;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #00796b;
-            text-align: center;
-        }
-        p {
-            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
             line-height: 1.6;
         }
-        a {
-            display: block;
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
             text-align: center;
-            margin-top: 30px;
-            color: #00796b;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.1;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card i {
+            font-size: 1.5rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .info-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info-card li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
             text-decoration: none;
+            margin-top: 2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--secondary-color);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--card-bg), #f1f5f9);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: var(--text-color);
+            font-size: 0.875rem;
+        }
+
+        .prevention-steps {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .prevention-steps h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+        }
+
+        .step-number {
+            background: var(--primary-color);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
+        }
+
+        .complications {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .complications h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .complication {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+        }
+
+        .complication h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1>Herpes</h1>
+        <p>Informações detalhadas sobre prevenção, diagnóstico e tratamento</p>
+    </div>
+
     <div class="container">
-        <h1>Herpes Genital</h1>
-        <p><strong>Forma de transmissão:</strong> contato direto com lesões ou secreções infectadas.</p>
-        <p><strong>Sintomas:</strong> bolhas dolorosas nos genitais, coceira e queimação.</p>
-        <p><strong>Diagnóstico:</strong> exames laboratoriais como PCR ou cultura de lesões.</p>
-        <p><strong>Tratamento:</strong> antivirais como aciclovir, valaciclovir ou fanciclovir.</p>
-        <a href="index.html">← Voltar para a página inicial</a>
+        <div class="stat-grid">
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <h3>3.7 bilhões</h3>
+                <p>Pessoas com HSV-1 no mundo</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-shield-virus"></i>
+                <h3>491 milhões</h3>
+                <p>Pessoas com HSV-2 no mundo</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-syringe"></i>
+                <h3>100%</h3>
+                <p>Tratamento disponível no SUS</p>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="info-card">
+                <h2><i class="fas fa-virus"></i> O que é Herpes?</h2>
+                <p>O herpes é uma infecção viral causada pelo vírus do herpes simples (HSV). Existem dois tipos: HSV-1 (principalmente oral) e HSV-2 (principalmente genital). É uma infecção crônica que pode permanecer latente no organismo.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-exchange-alt"></i> Transmissão</h2>
+                <ul>
+                    <li>Contato direto com lesões</li>
+                    <li>Relações sexuais desprotegidas</li>
+                    <li>Beijo (HSV-1)</li>
+                    <li>Compartilhamento de objetos pessoais</li>
+                    <li>Transmissão vertical (mãe para filho)</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-thermometer-half"></i> Sintomas</h2>
+                <ul>
+                    <li>Bolhas pequenas e dolorosas</li>
+                    <li>Coceira e formigamento</li>
+                    <li>Febre e mal-estar</li>
+                    <li>Gânglios inchados</li>
+                    <li>Dor ao urinar (herpes genital)</li>
+                    <li>Pode ser assintomático</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-stethoscope"></i> Diagnóstico</h2>
+                <ul>
+                    <li>Exame clínico</li>
+                    <li>Teste de PCR</li>
+                    <li>Exame de sangue</li>
+                    <li>Cultura viral</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="complications">
+            <h2><i class="fas fa-exclamation-triangle"></i> Complicações</h2>
+            <div class="complication">
+                <h3><i class="fas fa-brain"></i> Neurológicas</h3>
+                <p>Pode causar encefalite, meningite e problemas neurológicos graves em casos raros.</p>
+            </div>
+            <div class="complication">
+                <h3><i class="fas fa-eye"></i> Oculares</h3>
+                <p>Pode causar ceratite herpética, que pode levar à cegueira se não tratada.</p>
+            </div>
+            <div class="complication">
+                <h3><i class="fas fa-baby"></i> Neonatais</h3>
+                <p>Pode causar infecção grave no recém-nascido se a mãe tiver lesões ativas durante o parto.</p>
+            </div>
+        </div>
+
+        <div class="prevention-steps">
+            <h2><i class="fas fa-shield-alt"></i> Prevenção</h2>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h3>Uso de Preservativo</h3>
+                    <p>Use camisinha em todas as relações sexuais, mesmo durante períodos sem lesões.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h3>Evite Contato</h3>
+                    <p>Evite contato direto com lesões ativas e não compartilhe objetos pessoais.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h3>Tratamento Antiviral</h3>
+                    <p>Use medicamentos antivirais conforme prescrito para reduzir surtos e transmissão.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <h3>Pré-natal</h3>
+                    <p>Gestantes com herpes devem informar o médico para prevenir transmissão ao bebê.</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Voltar para a página inicial
+        </a>
     </div>
 </body>
 </html>
