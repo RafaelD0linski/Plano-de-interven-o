@@ -17,6 +17,19 @@
             --success-color: #10b981;
             --warning-color: #f59e0b;
             --danger-color: #ef4444;
+            --border-color: #e0e0e0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #60a5fa;
+            --secondary-color: #3b82f6;
+            --accent-color: #93c5fd;
+            --background-color: #1e293b;
+            --text-color: #f1f5f9;
+            --card-bg: #334155;
+            --border-color: #475569;
+            --shadow-color: rgba(0, 0, 0, 0.3);
         }
 
         * {
@@ -30,6 +43,34 @@
             background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .theme-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px var(--shadow-color);
+        }
+
+        .theme-switch:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-switch i {
+            font-size: 1.5rem;
+            color: var(--text-color);
         }
 
         .header {
@@ -76,12 +117,8 @@
             background: var(--card-bg);
             border-radius: 1rem;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .info-card:hover {
-            transform: translateY(-5px);
+            box-shadow: 0 4px 15px var(--shadow-color);
+            border: 1px solid var(--border-color);
         }
 
         .info-card h2 {
@@ -124,37 +161,54 @@
             border-radius: 0.5rem;
             text-decoration: none;
             margin-top: 2rem;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .back-button:hover {
             background: var(--secondary-color);
+            transform: translateX(-5px);
         }
 
         .stat-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            gap: 1.5rem;
             margin: 2rem 0;
         }
 
         .stat-card {
-            background: linear-gradient(135deg, var(--card-bg), #f1f5f9);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 2rem;
+            border-radius: 1rem;
             text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px var(--shadow-color);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--shadow-color);
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
         }
 
         .stat-card h3 {
-            color: var(--primary-color);
-            font-size: 1.5rem;
+            color: white;
+            font-size: 2rem;
             margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         .stat-card p {
-            color: var(--text-color);
-            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin: 0;
+            line-height: 1.5;
         }
 
         .prevention-steps {
@@ -162,12 +216,16 @@
             border-radius: 1rem;
             padding: 1.5rem;
             margin-top: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px var(--shadow-color);
+            border: 1px solid var(--border-color);
         }
 
         .prevention-steps h2 {
             color: var(--primary-color);
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .step {
@@ -176,8 +234,9 @@
             gap: 1rem;
             margin-bottom: 1rem;
             padding: 1rem;
-            background: #f8fafc;
+            background: var(--background-color);
             border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
         }
 
         .step-number {
@@ -197,19 +256,24 @@
             border-radius: 1rem;
             padding: 1.5rem;
             margin-top: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px var(--shadow-color);
+            border: 1px solid var(--border-color);
         }
 
         .complications h2 {
             color: var(--primary-color);
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .complication {
             margin-bottom: 1.5rem;
             padding: 1rem;
-            background: #f8fafc;
+            background: var(--background-color);
             border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
         }
 
         .complication h3 {
@@ -218,6 +282,10 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+
+        .complication p {
+            color: var(--text-color);
         }
 
         @media (max-width: 768px) {
@@ -236,6 +304,10 @@
     </style>
 </head>
 <body>
+    <button class="theme-switch" id="themeSwitch" title="Alternar tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <div class="header">
         <h1>Gonorreia</h1>
         <p>Informações detalhadas sobre prevenção, diagnóstico e tratamento</p>
@@ -245,56 +317,50 @@
         <div class="stat-grid">
             <div class="stat-card">
                 <i class="fas fa-users"></i>
-                <h3>87 milhões</h3>
-                <p>Novos casos por ano no mundo</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-shield-virus"></i>
-                <h3>50%</h3>
-                <p>Das mulheres são assintomáticas</p>
+                <h3>87M</h3>
+                <p>Casos de gonorreia no mundo por ano</p>
             </div>
             <div class="stat-card">
                 <i class="fas fa-syringe"></i>
                 <h3>100%</h3>
-                <p>Tratamento disponível no SUS</p>
+                <p>Tratamento disponível gratuitamente pelo SUS</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>50%</h3>
+                <p>Das mulheres não apresentam sintomas</p>
             </div>
         </div>
 
         <div class="content-grid">
             <div class="info-card">
                 <h2><i class="fas fa-bacteria"></i> O que é Gonorreia?</h2>
-                <p>A gonorreia é uma infecção sexualmente transmissível causada pela bactéria Neisseria gonorrhoeae. Pode afetar a uretra, reto, garganta e, em mulheres, o colo do útero.</p>
+                <p>A gonorreia é uma infecção sexualmente transmissível causada pela bactéria Neisseria gonorrhoeae. Pode afetar os órgãos genitais, reto e garganta.</p>
             </div>
 
             <div class="info-card">
                 <h2><i class="fas fa-exchange-alt"></i> Transmissão</h2>
-                <ul>
-                    <li>Relações sexuais desprotegidas</li>
-                    <li>Sexo vaginal, anal e oral</li>
-                    <li>Transmissão vertical (mãe para filho)</li>
-                    <li>Contato com secreções infectadas</li>
-                </ul>
+                <p>A gonorreia é transmitida principalmente por contato sexual desprotegido. Pode ser transmitida através de relações sexuais vaginais, anais ou orais.</p>
             </div>
 
             <div class="info-card">
-                <h2><i class="fas fa-thermometer-half"></i> Sintomas</h2>
-                <ul>
-                    <li>Secreção uretral amarelada</li>
-                    <li>Dor ao urinar</li>
-                    <li>Sangramento entre menstruações</li>
-                    <li>Dor durante relações sexuais</li>
-                    <li>Pode ser assintomática</li>
-                </ul>
+                <h2><i class="fas fa-stethoscope"></i> Sintomas</h2>
+                <p>Os sintomas podem incluir corrimento, dor ao urinar e sangramento entre períodos menstruais. Muitas pessoas, especialmente mulheres, não apresentam sintomas.</p>
             </div>
 
             <div class="info-card">
-                <h2><i class="fas fa-stethoscope"></i> Diagnóstico</h2>
-                <ul>
-                    <li>Exame clínico</li>
-                    <li>Cultura bacteriana</li>
-                    <li>Teste de amplificação de ácido nucleico</li>
-                    <li>Exames de sangue</li>
-                </ul>
+                <h2><i class="fas fa-microscope"></i> Diagnóstico</h2>
+                <p>O diagnóstico é feito através de exames laboratoriais e análise clínica. O SUS oferece testes gratuitos e sigilosos em todas as unidades de saúde.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-syringe"></i> Prevenção</h2>
+                <p>A principal forma de prevenção é o uso de preservativo em todas as relações sexuais. O diagnóstico precoce e tratamento do parceiro também são importantes.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-heartbeat"></i> Tratamento</h2>
+                <p>O tratamento é feito com antibióticos, disponíveis gratuitamente pelo SUS. É importante tratar o parceiro para evitar reinfecção.</p>
             </div>
         </div>
 
@@ -333,15 +399,15 @@
             <div class="step">
                 <div class="step-number">3</div>
                 <div>
-                    <h3>Tratamento do Parceiro</h3>
-                    <p>Se diagnosticado, o parceiro também deve ser tratado para evitar reinfecção.</p>
+                    <h3>Higiene</h3>
+                    <p>Mantenha uma boa higiene íntima e evite compartilhar objetos pessoais.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-number">4</div>
                 <div>
-                    <h3>Pré-natal</h3>
-                    <p>Gestantes devem fazer o teste no início do pré-natal para prevenir a transmissão vertical.</p>
+                    <h3>Tratamento do Parceiro</h3>
+                    <p>Se diagnosticado, informe seu(sua) parceiro(a) para que também faça o teste e tratamento.</p>
                 </div>
             </div>
         </div>
@@ -351,6 +417,31 @@
             Voltar para a página inicial
         </a>
     </div>
+
+    <script>
+        const themeSwitch = document.getElementById('themeSwitch');
+        const icon = themeSwitch.querySelector('i');
+        
+        // Verifica se há um tema salvo
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateIcon(savedTheme);
+        }
+
+        themeSwitch.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+
+        function updateIcon(theme) {
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    </script>
 </body>
 </html>
 

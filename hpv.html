@@ -17,6 +17,19 @@
             --success-color: #10b981;
             --warning-color: #f59e0b;
             --danger-color: #ef4444;
+            --border-color: #e0e0e0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #60a5fa;
+            --secondary-color: #3b82f6;
+            --accent-color: #93c5fd;
+            --background-color: #1e293b;
+            --text-color: #f1f5f9;
+            --card-bg: #334155;
+            --border-color: #475569;
+            --shadow-color: rgba(0, 0, 0, 0.3);
         }
 
         * {
@@ -30,6 +43,34 @@
             background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .theme-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px var(--shadow-color);
+        }
+
+        .theme-switch:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-switch i {
+            font-size: 1.5rem;
+            color: var(--text-color);
         }
 
         .header {
@@ -76,12 +117,8 @@
             background: var(--card-bg);
             border-radius: 1rem;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .info-card:hover {
-            transform: translateY(-5px);
+            box-shadow: 0 4px 15px var(--shadow-color);
+            border: 1px solid var(--border-color);
         }
 
         .info-card h2 {
@@ -124,37 +161,54 @@
             border-radius: 0.5rem;
             text-decoration: none;
             margin-top: 2rem;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .back-button:hover {
             background: var(--secondary-color);
+            transform: translateX(-5px);
         }
 
         .stat-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            gap: 1.5rem;
             margin: 2rem 0;
         }
 
         .stat-card {
-            background: linear-gradient(135deg, var(--card-bg), #f1f5f9);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 2rem;
+            border-radius: 1rem;
             text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px var(--shadow-color);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--shadow-color);
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
         }
 
         .stat-card h3 {
-            color: var(--primary-color);
-            font-size: 1.5rem;
+            color: white;
+            font-size: 2rem;
             margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         .stat-card p {
-            color: var(--text-color);
-            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin: 0;
+            line-height: 1.5;
         }
 
         .prevention-steps {
@@ -208,6 +262,10 @@
     </style>
 </head>
 <body>
+    <button class="theme-switch" id="themeSwitch" title="Alternar tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <div class="header">
         <h1>HPV - Papilomavírus Humano</h1>
         <p>Informações detalhadas sobre prevenção, diagnóstico e tratamento</p>
@@ -221,52 +279,46 @@
                 <p>Das pessoas sexualmente ativas terão HPV em algum momento da vida</p>
             </div>
             <div class="stat-card">
-                <i class="fas fa-shield-virus"></i>
+                <i class="fas fa-syringe"></i>
                 <h3>90%</h3>
-                <p>Efetividade da vacina contra os tipos mais comuns</p>
+                <p>Efetividade da vacina contra os tipos mais comuns de HPV</p>
             </div>
             <div class="stat-card">
-                <i class="fas fa-syringe"></i>
+                <i class="fas fa-hospital"></i>
                 <h3>100%</h3>
-                <p>Cobertura da vacina pelo SUS para meninas de 9-14 anos</p>
+                <p>Cobertura pelo SUS para meninas de 9 a 14 anos</p>
             </div>
         </div>
 
         <div class="content-grid">
             <div class="info-card">
                 <h2><i class="fas fa-virus"></i> O que é HPV?</h2>
-                <p>O HPV (Papilomavírus Humano) é um vírus que infecta a pele e as mucosas, podendo causar verrugas genitais e câncer, especialmente do colo do útero. Existem mais de 200 tipos diferentes de HPV.</p>
+                <p>O HPV (Papilomavírus Humano) é um vírus que infecta a pele ou mucosas, podendo causar verrugas ou lesões percursoras de câncer. Existem mais de 150 tipos diferentes de HPV, sendo que alguns podem causar câncer, principalmente no colo do útero.</p>
             </div>
 
             <div class="info-card">
                 <h2><i class="fas fa-exchange-alt"></i> Transmissão</h2>
-                <ul>
-                    <li>Contato sexual (oral, vaginal, anal)</li>
-                    <li>Contato direto com pele ou mucosas infectadas</li>
-                    <li>Compartilhamento de objetos contaminados</li>
-                    <li>Transmissão vertical (mãe para filho)</li>
-                </ul>
+                <p>O HPV é transmitido principalmente por contato sexual, mas também pode ser transmitido por contato direto com a pele infectada. O uso de preservativo reduz o risco de transmissão, mas não o elimina completamente.</p>
             </div>
 
             <div class="info-card">
-                <h2><i class="fas fa-thermometer-half"></i> Sintomas</h2>
-                <ul>
-                    <li>Verrugas genitais</li>
-                    <li>Lesões no colo do útero</li>
-                    <li>Pode ser assintomático</li>
-                    <li>Coceira e desconforto</li>
-                    <li>Sangramento após relação sexual</li>
-                </ul>
+                <h2><i class="fas fa-stethoscope"></i> Sintomas</h2>
+                <p>Muitas pessoas infectadas não apresentam sintomas. Quando presentes, podem incluir verrugas genitais, que podem aparecer semanas ou meses após o contato com o vírus.</p>
             </div>
 
             <div class="info-card">
-                <h2><i class="fas fa-stethoscope"></i> Diagnóstico</h2>
-                <ul>
-                    <li>Exame clínico</li>
-                    <li>Colposcopia</li>
-                    <li>Exame Papanicolau</li>
-                    <li>Biópsia (quando necessário)</li>
-                </ul>
+                <h2><i class="fas fa-microscope"></i> Diagnóstico</h2>
+                <p>O diagnóstico é feito através de exames clínicos, Papanicolau e, em alguns casos, biópsia. É importante realizar exames periódicos para detectar precocemente qualquer alteração.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-syringe"></i> Prevenção</h2>
+                <p>A vacinação é a principal forma de prevenção. O SUS oferece a vacina gratuitamente para meninas de 9 a 14 anos e meninos de 11 a 14 anos. O uso de preservativo também é importante.</p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-heartbeat"></i> Tratamento</h2>
+                <p>O tratamento depende do tipo de lesão. Pode incluir medicamentos tópicos, procedimentos para remoção das verrugas e acompanhamento médico regular. O sistema imunológico pode eliminar o vírus naturalmente.</p>
             </div>
         </div>
 
@@ -307,5 +359,30 @@
             Voltar para a página inicial
         </a>
     </div>
+
+    <script>
+        const themeSwitch = document.getElementById('themeSwitch');
+        const icon = themeSwitch.querySelector('i');
+        
+        // Verifica se há um tema salvo
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateIcon(savedTheme);
+        }
+
+        themeSwitch.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+
+        function updateIcon(theme) {
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    </script>
 </body>
 </html>
