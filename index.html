@@ -505,13 +505,67 @@
       box-shadow: 0 2px 10px var(--shadow-color);
     }
 
-    .theme-switch:hover {
+    .support-button {
+      position: fixed;
+      top: 20px;
+      right: 90px;
+      z-index: 1000;
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px var(--shadow-color);
+    }
+
+    .support-button:hover {
       transform: scale(1.1);
     }
 
-    .theme-switch i {
+    .support-button i {
       font-size: 1.5rem;
       color: var(--text-color);
+    }
+
+    .phone-popup {
+      position: fixed;
+      top: 90px;
+      right: 90px;
+      background: var(--card-bg);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 15px var(--shadow-color);
+      border: 1px solid var(--border-color);
+      display: none;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .phone-popup.show {
+      display: block;
+    }
+1
+    .phone-popup a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .phone-popup a:hover {
+      color: var(--secondary-color);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -519,6 +573,18 @@
   <button class="theme-switch" id="themeSwitch" title="Alternar tema">
     <i class="fas fa-moon"></i>
   </button>
+
+  <button class="support-button" id="supportButton" title="Suporte">
+    <i class="fas fa-headset"></i>
+  </button>
+
+  <div class="phone-popup" id="phonePopup">
+    <a href="tel:991382310">
+      <i class="fas fa-phone"></i>
+      (46) 9 9138-2310
+    </a>
+  </div>
+
   <div class="header">
     <h1>Saúde e Tecnologia na Prevenção de ISTs</h1>
     <p>Informações confiáveis e atualizadas sobre Infecções Sexualmente Transmissíveis</p>
@@ -692,6 +758,8 @@
   <script>
     const themeSwitch = document.getElementById('themeSwitch');
     const icon = themeSwitch.querySelector('i');
+    const supportButton = document.getElementById('supportButton');
+    const phonePopup = document.getElementById('phonePopup');
     
     // Verifica se há um tema salvo
     const savedTheme = localStorage.getItem('theme');
@@ -707,6 +775,17 @@
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
       updateIcon(newTheme);
+    });
+
+    supportButton.addEventListener('click', () => {
+      phonePopup.classList.toggle('show');
+    });
+
+    // Fechar o popup quando clicar fora dele
+    document.addEventListener('click', (event) => {
+      if (!supportButton.contains(event.target) && !phonePopup.contains(event.target)) {
+        phonePopup.classList.remove('show');
+      }
     });
 
     function updateIcon(theme) {
