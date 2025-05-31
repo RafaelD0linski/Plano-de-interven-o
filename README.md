@@ -20,10 +20,7 @@ Criar um recurso online claro e confiável para conscientizar sobre ISTs e ajuda
 
 ## 📲 Como Acessar  
 1. Clone este repositório:  
-   ```bash
-   git clone https://github.com/seu-usuario/pagina-ists.git
 
-```
 
 # Saúde e Tecnologia na Prevenção de ISTs
 
