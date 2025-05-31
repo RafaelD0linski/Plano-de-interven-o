@@ -26,6 +26,26 @@ Criar um recurso online claro e confiável para conscientizar sobre ISTs e ajuda
 
 Este é um projeto web informativo sobre Infecções Sexualmente Transmissíveis (ISTs), desenvolvido para fornecer informações confiáveis e atualizadas sobre prevenção, diagnóstico e tratamento.
 
-## Licença
+## 📝 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+Este projeto está licenciado sob os termos da licença **GNU GPLv3**.  
+Veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
+
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+
+Copyright (C) 2025 Rafael Dolinski
+
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+
+Preamble
+
+The GNU General Public License is a free, copyleft license for
+software and other kinds of works.
+
+[... O conteúdo é muito extenso para exibir todo aqui, mas você deve usar o texto completo oficial da licença ...]
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+
