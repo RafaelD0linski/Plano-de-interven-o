@@ -29,7 +29,7 @@ Este é um projeto web informativo sobre Infecções Sexualmente Transmissíveis
 ## 📝 Licença
 
 Este projeto está licenciado sob os termos da licença **GNU GPLv3**.  
-Veja o arquivo [[LICENSE](https://www.gnu.org/licenses/gpl-3.0.txt)](./LICENSE) para mais detalhes.
+Veja o arquivo [[LICENSE](https://www.gnu.org/licenses/gpl-3.0.txt)] para mais detalhes.
 
 GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
